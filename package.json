@@ -1,0 +1,25 @@
+{
+  "name": "notion-todo-calendar",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.5.8",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.5.4",
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "dev": "ts-node ./src/index.ts",
+    "build": "tsc",
+    "watch": "nodemon --watch 'src/**/*.ts' --ext 'ts' --exec 'ts-node ./src/index.ts'"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "express": "^4.19.2"
+  }
+}
