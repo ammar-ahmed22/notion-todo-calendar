@@ -19,6 +19,10 @@ const app = express();
 
 const notion = new Notion(process.env.NOTION_TOKEN);
 
+app.get("/", (_, res) => {
+  res.send({ message: "use /calendar.ics to subscribe/download calendar!" });
+})
+
 app.get("/calendar.ics", async (req, res) => {
   const results = await notion.paginatedDatabaseQuery({ database_id: process.env.DB_ID!, filter: { or: [] }});
   let calendar = new Calendar("-//AmmarAhmed", { minimumDuration: 10 * 60000 });
