@@ -13,7 +13,7 @@ if (!process.env.DB_ID) {
   throw new Error("DB_ID environment variable is required!");
 }
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
