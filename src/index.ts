@@ -32,15 +32,14 @@ app.get("/calendar.ics", async (req, res) => {
       let className = Notion.extractPropertyValue(result.properties["Class"], "string");
       let status = Notion.extractPropertyValue(result.properties["Status"], "string");
       let dueDate = Notion.extractPropertyValue(result.properties["Due Date"], "date");
-      if (status !== "Done") {
-        calendar.addEvent({
-          title: `${name} | ${className}`,
-          end: dueDate.end ?? dueDate.start,
-          start: dueDate.start,
-          id: result.id,
-          created: new Date(result.created_time)
-        })
-      }
+      calendar.addEvent({
+        title: `${name} | ${className}`,
+        end: dueDate.end ?? dueDate.start,
+        start: dueDate.start,
+        id: result.id,
+        created: new Date(result.created_time),
+        cancelled: status === "Done"
+      })
     } catch (error) {
       res.status(400);
       return res.send({ error });

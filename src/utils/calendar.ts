@@ -7,6 +7,7 @@ type CalendarEvent = {
   id: string,
   description?: string,
   location?: string,
+  cancelled?: boolean
 }
 
 type CalendarOptions = {
@@ -46,6 +47,9 @@ class Calendar {
     }
     if (event.location) {
       this.icsInsert("location", event.location);
+    }
+    if (event.cancelled) {
+      this.icsInsert("status", "CANCELLED");
     }
     this.icsInsert("end", "VEVENT");
   }
