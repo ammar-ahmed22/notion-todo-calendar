@@ -33,7 +33,8 @@ app.get("/calendar.ics", async (req, res) => {
       let status = Notion.extractPropertyValue(result.properties["Status"], "string");
       let dueDate = Notion.extractPropertyValue(result.properties["Due Date"], "date");
       calendar.addEvent({
-        title: `${name} | ${className}`,
+        title: `${name}`,
+        location: `${className}`,
         end: dueDate.end ?? dueDate.start,
         start: dueDate.start,
         id: result.id,
@@ -51,4 +52,4 @@ app.get("/calendar.ics", async (req, res) => {
   return res.send(calendar.generate());
 })
 
-app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}.`))
+app.listen(PORT, () => console.log(`🚀 Calendar available at http://localhost:${PORT}/calendar.ics`))
